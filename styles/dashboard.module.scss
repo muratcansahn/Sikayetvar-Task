@@ -1,0 +1,56 @@
+.dashboard {
+  display: flex;
+
+  .sidebarContainer {
+    display: flex;
+    flex: 1;
+  }
+
+  .contentContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+
+    .contentWidgets {
+      display: flex;
+      gap: 20px;
+      padding: 30px;
+
+      .contentWidget {
+        display: flex;
+        justify-content: space-between;
+        width: 255px;
+        height: 157px;
+        border-radius: 8px;
+        padding: 20px;
+
+        .left {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 12px;
+          padding-bottom: 32px;
+
+          .widgetTitle {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 17.07px;
+            color: rgba(108, 108, 108, 1);
+          }
+        }
+
+        .right {
+          display: flex;
+          align-items: flex-end;
+          .widgetCount {
+            font-size: 30px;
+            line-height: 36.57px;
+            text-align: right;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 1);
+          }
+        }
+      }
+    }
+  }
+}

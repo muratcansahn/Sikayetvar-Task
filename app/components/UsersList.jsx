@@ -1,23 +1,26 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { getAllUsers } from "../services/UsersService";
+import { getUsersDetail } from "../services/UsersService";
 import { debounce } from "lodash";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const UsersList = () => {
   console.log("users list rendered");
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [debounceSearch, setDebounceSearch] = useState("");
 
+  const searchp = searchParams.get("search");
+
   const fetchUsers = async () => {
     try {
-      const res = await getAllUsers();
+      const res = await getUsersDetail();
       if (res.status === 200) {
-        setUsers(res.data.users);
+        setUsers(res.data);
       }
     } catch (error) {
       console.log(error);
@@ -62,11 +65,16 @@ const UsersList = () => {
           <p>Search; {search}</p>
           {console.log(setSearch)}
           <p>Debounce search; {debounceSearch}</p>
+          <p>Search params : {searchp}</p>
         </div>
         {users.map((user) => (
           <li key={user.id}>{user.firstName}</li>
         ))}
       </div>
+
+      <button type="button" onClick={() => router.push("/dashboard")}>
+        button
+      </button>
     </>
   );
 };
